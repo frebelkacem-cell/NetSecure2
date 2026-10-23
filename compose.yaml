@@ -1,0 +1,26 @@
+services:
+  api:
+    build: ./api
+    networks:
+      - backend
+    # Pas de "ports": l'API n'est joignable que depuis le reseau Docker interne,
+    # jamais directement depuis la machine hote.
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - api
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+    internal: true
