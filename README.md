@@ -25,8 +25,8 @@ curl http://localhost/health
 
 ## Répartition du travail (binôme)
 
-Le projet a été construit en deux temps, coordonnés uniquement via ce dépôt (branches,
-Pull Requests, et `COORDINATION.md`) :
+Pour ce TP, le travail a été réparti en deux parties, Binôme A et Binôme B, avec un commit et
+un push distincts pour chacune.
 
 - **Binôme A** — a posé l'architecture (API, NGINX, réseaux), fait la reconnaissance de
   l'infrastructure et le premier scan de sécurité. Détails : [`SCAN_INITIAL.md`](SCAN_INITIAL.md),
@@ -36,8 +36,7 @@ Pull Requests, et `COORDINATION.md`) :
   CI de scan automatique. Détails : [`SCAN_APRES_DURCISSEMENT.md`](SCAN_APRES_DURCISSEMENT.md),
   réponses aux questions 4/6/8 dans [`REPONSES_B.md`](REPONSES_B.md).
 
-Le fil de coordination entre les deux (contraintes, blocages, transmission d'information) est
-dans [`COORDINATION.md`](COORDINATION.md).
+Ce README reprend le rapport combiné de l'ensemble du travail réalisé pour ce TP.
 
 ## Résultat du scan de sécurité
 
