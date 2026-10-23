@@ -19,6 +19,13 @@ docker compose config
   l'hote. Fait reverse proxy vers `http://api:5000` (resolution DNS interne a Docker, via le
   nom du service).
 
+### Volumes et variables d'environnement
+
+`docker compose config` ne montre aucune section `volumes:` ni `environment:` a ce stade : ni
+`api` ni `nginx` ne declarent de volume monte, et aucune variable d'environnement n'est
+definie (ni dans `compose.yaml`, ni dans les `Dockerfile`). Rien a signaler de ce cote pour
+cette reconnaissance initiale.
+
 ### Reseaux
 
 `docker network ls` montre deux reseaux crees par compose, en plus des reseaux par defaut :
@@ -43,7 +50,7 @@ netsecure-binomea-nginx-1   ...   0.0.0.0:80->80/tcp
 
 Seul `nginx` publie un port sur l'hote (80). L'API n'en publie aucun : elle expose juste le
 port 5000 a l'interieur du reseau Docker, mais ce n'est pas la meme chose que publier le port
-sur l'hote (voir reponse Q2 dans `REPONSES_A.md`).
+sur l'hote (voir reponse Q2 dans `REPONSES.md`).
 
 Verification concrete :
 

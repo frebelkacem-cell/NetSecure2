@@ -91,4 +91,4 @@ attaquant pourrait faire s'il parvenait malgre tout a executer du code dans le c
 systeme de fichiers hors `/tmp`, et aucune capacite Linux a exploiter. Pour reellement faire
 baisser le compte de CVE sur les paquets systeme, il faudrait changer d'image de base (ex :
 une variante "distroless" ou une image plus minimale que `-slim`), ce qui sort du cadre des
-mesures demandees pour ce TP (voir aussi `REPONSES_B.md`, Q8).
+mesures demandees pour ce TP (voir aussi `REPONSES.md`, Q8).
