@@ -29,12 +29,13 @@ Pour ce TP, le travail a été réparti en deux parties, Binôme A et Binôme B,
 un push distincts pour chacune.
 
 - **Binôme A** — a posé l'architecture (API, NGINX, réseaux), fait la reconnaissance de
-  l'infrastructure et le premier scan de sécurité. Détails : [`SCAN_INITIAL.md`](SCAN_INITIAL.md),
-  réponses aux questions 1/2/3/5/7 dans [`REPONSES_A.md`](REPONSES_A.md).
+  l'infrastructure et le premier scan de sécurité. Détails : [`SCAN_INITIAL.md`](SCAN_INITIAL.md).
 - **Binôme B** — a repris ce travail pour appliquer le durcissement (utilisateur non-root,
   système de fichiers en lecture seule, capacités Linux limitées...) et construire le pipeline
-  CI de scan automatique. Détails : [`SCAN_APRES_DURCISSEMENT.md`](SCAN_APRES_DURCISSEMENT.md),
-  réponses aux questions 4/6/8 dans [`REPONSES_B.md`](REPONSES_B.md).
+  CI de scan automatique. Détails : [`SCAN_APRES_DURCISSEMENT.md`](SCAN_APRES_DURCISSEMENT.md).
+
+Les réponses aux huit questions d'analyse du TP sont regroupées dans
+[`REPONSES.md`](REPONSES.md).
 
 Ce README reprend le rapport combiné de l'ensemble du travail réalisé pour ce TP.
 
