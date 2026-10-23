@@ -5,18 +5,45 @@ services:
       - backend
     # Pas de "ports": l'API n'est joignable que depuis le reseau Docker interne,
     # jamais directement depuis la machine hote.
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
 
   nginx:
-    image: nginx:alpine
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    # Image "unprivileged" officielle : le process nginx (master + workers) tourne
+    # entierement en non-root et ecoute sur le port 8080 (jamais besoin de la
+    # capacite CAP_NET_BIND_SERVICE pour un port < 1024).
+    image: nginxinc/nginx-unprivileged:1.27-alpine
     ports:
-      - "80:80"
+      - "80:8080"
     networks:
       - frontend
       - backend
     depends_on:
       - api
+    read_only: true
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - type: tmpfs
+        target: /tmp
+        tmpfs:
+          mode: 0o1777
+      - type: tmpfs
+        target: /var/cache/nginx
+        tmpfs:
+          mode: 0o1777
+      - type: tmpfs
+        target: /var/run
+        tmpfs:
+          mode: 0o1777
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
 
 networks:
   frontend:

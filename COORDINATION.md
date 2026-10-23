@@ -38,3 +38,21 @@ l'API : ca devrait te servir de base pour ton durcissement (Partie 3).
 Aucun blocage de mon cote pour l'instant. Si en avancant sur la Partie 3/4 tu as besoin de
 quelque chose cote infra (ex: changer un Dockerfile, ajouter une variable d'env, etc.), tu
 peux le faire directement dans ta PR et je regarderai en relecture.
+
+## Note de Binome B (Partie 3/4 terminee, PR #2)
+
+Durcissement applique (voir `SCAN_APRES_DURCISSEMENT.md` pour le detail) : utilisateur non-root
+sur l'API, image nginx non-privilegiee, filesystem en lecture seule + tmpfs cibles, capacites
+Linux reduites a zero, Flask mis a jour. Re-scan Trivy toujours a 44 HIGH / 0 CRITICAL : ce sont
+les memes CVE que dans ton `SCAN_INITIAL.md` (paquets systeme Debian de l'image de base, sans
+version corrigee disponible), donc aucune des mesures de durcissement applicatif ne pouvait les
+faire disparaitre.
+
+**Etat du pipeline CI (`.github/workflows/security-scan.yml`, PR #2)** : le job `scan` echoue
+(`gh pr checks 2` -> fail), et c'est volontaire, pas un bug. Le workflow utilise
+`exit-code: '1'` sur `aquasecurity/trivy-action`, donc toute image avec au moins une
+vulnerabilite HIGH/CRITICAL fait echouer le job -- exactement ce que demande le sujet (Partie
+4, point 8). Comme l'image API contient toujours les 44 CVE HIGH deja identifiees par Binome A
+(paquets systeme sans patch disponible au moment du scan), le job echoue a chaque run, meme sur
+l'image durcie. Logs complets : voir les runs lies a la PR #2
+(`gh run view <id> --repo frebelkacem-cell/NetSecure --log-failed`).
